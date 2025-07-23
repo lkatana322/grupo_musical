@@ -1,4 +1,3 @@
-// src/app/store/page.tsx
 "use client";
 
 import { useState, useRef, useEffect } from "react";
@@ -7,66 +6,38 @@ import { Guitar, Calendar, BookOpen, Megaphone } from "lucide-react";
 import styles from "./page.module.css";
 
 export default function StoreHome() {
+  /* ───────── State & refs ───────── */
   const [bannerLoaded, setBannerLoaded] = useState(false);
   const [valuesVisible, setValuesVisible] = useState(false);
   const [testsVisible, setTestsVisible] = useState(false);
-  const valuesRef = useRef<HTMLElement>(null);
-  const testsRef = useRef<HTMLElement>(null);
 
-  // dispara la animación al hacer scroll
+  const valuesRef = useRef<HTMLElement>(null);
+  const testsRef  = useRef<HTMLElement>(null);
+
+  /* ───────── Intersection observers ───────── */
   useEffect(() => {
     const obs = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            if (e.target === valuesRef.current) setValuesVisible(true);
-            if (e.target === testsRef.current) setTestsVisible(true);
-          }
+      entries => {
+        entries.forEach(e => {
+          if (!e.isIntersecting) return;
+          if (e.target === valuesRef.current) setValuesVisible(true);
+          if (e.target === testsRef.current)  setTestsVisible(true);
         });
       },
-      { threshold: 0.2 }
+      { threshold: 0.25 }
     );
+
     if (valuesRef.current) obs.observe(valuesRef.current);
-    if (testsRef.current) obs.observe(testsRef.current);
+    if (testsRef.current)  obs.observe(testsRef.current);
+
     return () => obs.disconnect();
   }, []);
 
-  const handleImageLoad: ImageProps["onLoadingComplete"] = () => {
+  /* ───────── Handlers ───────── */
+  const handleImageLoad: ImageProps["onLoadingComplete"] = () =>
     setBannerLoaded(true);
-  };
 
-  const testimonials = [
-    {
-      author: "Ana P.",
-      // usamos entidades HTML para las comillas
-      text: "&ldquo;¡Felicidades chicos, lo hicieron genial, me gustó mucho, recomendado al 100%! :D&rdquo;",
-    },
-    {
-      author: "Luis G.",
-      text: "&ldquo;Los recomiendo para mi próximo evento, show de calidad.&rdquo;",
-    },
-    {
-      author: "María S.",
-      text: "&ldquo;Qué lindo show, me encantó &lt;3. ¿Cuándo vienen a La Paz?&rdquo;",
-    },
-  ];
-
-  const values = [
-    {
-      title: "Compromiso",
-      description: "Siempre damos lo mejor para llevarte la mejor experiencia.",
-    },
-    {
-      title: "Responsabilidad",
-      description:
-        "Cumplimos horarios y cuidamos cada detalle de nuestra presentación.",
-    },
-    {
-      title: "Amor por la música",
-      description: "Entregamos el alma en cada canción, porque es nuestra pasión.",
-    },
-  ];
-
+  /* ───────── Static data ───────── */
   const cards = [
     {
       Icon: Guitar,
@@ -90,26 +61,57 @@ export default function StoreHome() {
     },
   ];
 
+  const values = [
+    {
+      title: "Compromiso",
+      description: "Siempre damos lo mejor para llevarte la mejor experiencia.",
+    },
+    {
+      title: "Responsabilidad",
+      description:
+        "Cumplimos horarios y cuidamos cada detalle de nuestra presentación.",
+    },
+    {
+      title: "Amor por la música",
+      description:
+        "Entregamos el alma en cada canción, porque es nuestra pasión.",
+    },
+  ];
+
+  const testimonials = [
+    {
+      author: "Ana P.",
+      text: "&ldquo;¡Felicidades chicos, lo hicieron genial, recomendado al 100%! :D&rdquo;",
+    },
+    {
+      author: "Luis G.",
+      text: "&ldquo;Los recomiendo para mi próximo evento, show de calidad.&rdquo;",
+    },
+    {
+      author: "María S.",
+      text: "&ldquo;Qué lindo show, me encantó &lt;3. ¿Cuándo vienen a La Paz?&rdquo;",
+    },
+  ];
+
+  /* ───────── JSX ───────── */
   return (
     <div className={styles.container}>
-      {/* Banner */}
+      {/* ── Banner ── */}
       <div className={styles.banner}>
         {!bannerLoaded && <div className={styles.bannerPlaceholder} />}
+        {/* capa difuminada */}
         <div className={styles.bannerBlur}>
           <Image
             src="/imagenes/baner.png"
-            alt="Fondo difuminado Grupo Musical"
+            alt="Fondo difuminado"
             fill
             priority
             className={bannerLoaded ? styles.loaded : ""}
-            style={{
-              objectFit: "cover",
-              objectPosition: "center",
-              filter: "blur(20px)",
-            }}
+            style={{ objectFit: "cover", filter: "blur(24px)" }}
             onLoadingComplete={handleImageLoad}
           />
         </div>
+        {/* imagen principal */}
         <div className={styles.bannerMain}>
           <Image
             src="/imagenes/baner.png"
@@ -117,73 +119,71 @@ export default function StoreHome() {
             fill
             priority
             className={bannerLoaded ? styles.loaded : ""}
-            style={{ objectFit: "contain", objectPosition: "center" }}
+            style={{ objectFit: "contain" }}
             onLoadingComplete={handleImageLoad}
-            onError={() => setBannerLoaded(true)}
           />
         </div>
+        {/* degradados */}
         <div className={styles.gradientTop} />
         <div className={styles.gradientBottom} />
-        <div className={styles.bannerTitleContainer}>
-          <h1 className={styles.bannerTitle}>Título del Grupo</h1>
-        </div>
+
+        <h1 className={styles.bannerTitle}>Título del Grupo</h1>
       </div>
 
-      {/* Mensaje genérico */}
+      {/* ── Intro ── */}
       <p className={styles.introText}>
         Descubre la esencia de nuestra música: eventos, cursos y tienda de
         instrumentos.
       </p>
 
-      {/* Tarjetas */}
+      {/* ── Cards ── */}
       <div className={styles.cards}>
-        {cards.map(({ Icon, label, description }, idx) => (
-          <div key={idx} className={styles.card}>
-            <Icon size={32} />
+        {cards.map(({ Icon, label, description }, i) => (
+          <div key={i} className={styles.card} style={{ animationDelay: `${0.1 * i}s` }}>
+            <Icon size={34} />
             <h2>{label}</h2>
             <p>{description}</p>
           </div>
         ))}
       </div>
 
-      {/* Valores */}
+      {/* ── Valores ── */}
       <section
         ref={valuesRef}
         className={`${styles.valuesSection} ${
           valuesVisible ? styles.visible : ""
         }`}
       >
-        <h2 className={styles.valuesTitle}>Nuestros Valores</h2>
+        <h2 className={styles.sectionTitle}>Nuestros Valores</h2>
         <div className={styles.values}>
           {values.map((v, i) => (
             <div
               key={i}
               className={styles.valueCard}
-              style={{ animationDelay: `${0.1 + i * 0.15}s` }}
+              style={{ animationDelay: `${0.15 * i}s` }}
             >
-              <h3 className={styles.valueTitle}>{v.title}</h3>
-              <p className={styles.valueDesc}>{v.description}</p>
+              <h3>{v.title}</h3>
+              <p>{v.description}</p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Testimonios */}
+      {/* ── Testimonios ── */}
       <section
         ref={testsRef}
         className={`${styles.testimonialsSection} ${
           testsVisible ? styles.visible : ""
         }`}
       >
-        <h2 className={styles.testimonialsTitle}>Testimonios de clientes</h2>
+        <h2 className={styles.sectionTitle}>Testimonios de clientes</h2>
         <div className={styles.testimonials}>
           {testimonials.map((t, i) => (
             <div
               key={i}
               className={styles.testimonialCard}
-              style={{ animationDelay: `${0.2 + i * 0.15}s` }}
+              style={{ animationDelay: `${0.2 + 0.15 * i}s` }}
             >
-              {/* renderizamos texto con dangerouslySetInnerHTML para respetar las entidades */}
               <p
                 className={styles.testimonialText}
                 dangerouslySetInnerHTML={{ __html: t.text }}

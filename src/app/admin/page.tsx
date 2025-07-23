@@ -1,4 +1,3 @@
-// src/app/admin/page.tsx
 "use client";
 
 import { Calendar, MapPin, Music2 } from "lucide-react";
@@ -13,11 +12,11 @@ type Tocada = {
 };
 
 const proximasTocadas: Tocada[] = [
-  { id: "1", fecha: "2025‑08‑10", evento: "Concierto de Verano",   ciudad: "Ciudad A", recinto: "Sala Principal" },
-  { id: "2", fecha: "2025‑08‑15", evento: "Recital Nocturno",      ciudad: "Ciudad B", recinto: "Teatro Central" },
-  { id: "3", fecha: "2025‑08‑22", evento: "Gala Musical",          ciudad: "Ciudad C", recinto: "Foro Cultural" },
-  { id: "4", fecha: "2025‑08‑30", evento: "Festival Anual",        ciudad: "Ciudad D", recinto: "Parque Escénico" },
-  { id: "5", fecha: "2025‑09‑05", evento: "Muestra de Talentos",   ciudad: "Ciudad E", recinto: "Auditorio X" },
+  { id: "1", fecha: "2025‑08‑10", evento: "Concierto de Verano", ciudad: "Ciudad A", recinto: "Sala Principal" },
+  { id: "2", fecha: "2025‑08‑15", evento: "Recital Nocturno", ciudad: "Ciudad B", recinto: "Teatro Central" },
+  { id: "3", fecha: "2025‑08‑22", evento: "Gala Musical", ciudad: "Ciudad C", recinto: "Foro Cultural" },
+  { id: "4", fecha: "2025‑08‑30", evento: "Festival Anual", ciudad: "Ciudad D", recinto: "Parque Escénico" },
+  { id: "5", fecha: "2025‑09‑05", evento: "Muestra de Talentos", ciudad: "Ciudad E", recinto: "Auditorio X" },
 ];
 
 export default function AdminHome() {

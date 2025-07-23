@@ -1,4 +1,3 @@
-// src/components/SidebarAdmin/SidebarAdmin.tsx
 "use client";
 
 import { useRef, useState, useEffect } from "react";
@@ -23,26 +22,20 @@ type Element =
 const elements: Element[] = [
   { type: "item", href: "/admin", label: "Dashboard", Icon: Home },
   { type: "sep" },
-
   { type: "item", href: "/admin/tocadas", label: "Tocadas", Icon: Mic },
   { type: "sep" },
-
   { type: "item", href: "/admin/integrantes", label: "Integrantes", Icon: User },
   { type: "item", href: "/admin/instrumentos", label: "Instrumentos", Icon: Guitar },
   { type: "sep" },
-
-  { type: "item", href: "/admin/eventos", label: "Gestión Eventos", Icon: CalendarPlus },
+  { type: "item", href: "/admin/eventos", label: "Eventos", Icon: CalendarPlus },
   { type: "item", href: "/admin/ingresos", label: "Ingresos", Icon: DollarSign },
   { type: "item", href: "/admin/tienda", label: "Tienda", Icon: Guitar },
   { type: "item", href: "/admin/usuarios", label: "Usuarios", Icon: User },
   { type: "sep" },
-
   { type: "item", href: "/admin/cursos", label: "Cursos", Icon: BookOpen },
   { type: "item", href: "/admin/inscripciones", label: "Inscripciones", Icon: List },
   { type: "sep" },
-
-  { type: "item", href: "/admin/website", label: "Administrar Web", Icon: Globe },
-  { type: "sep" },
+  { type: "item", href: "/admin/website", label: "Gestion Web", Icon: Globe },
 ];
 
 export default function SidebarAdmin() {
@@ -72,57 +65,52 @@ export default function SidebarAdmin() {
 
   return (
     <>
-      {/* SIDEBAR DESKTOP */}
+      {/* —— SIDEBAR DESKTOP —— */}
       <aside className={styles.desktopSidebar}>
         {elements.map((e, i) =>
           e.type === "sep" ? (
             <div key={i} className={styles.separatorDesktop} />
           ) : (
             <Link key={i} href={e.href} className={styles.menuItemDesktop}>
-              <e.Icon size={18} />
+              <e.Icon size={16} />
               <span>{e.label}</span>
             </Link>
           )
         )}
       </aside>
 
-      {/* BARRA MÓVIL INFERIOR */}
-      <div className={styles.mobileMenuBar}>
-        <div className={styles.scrollWrapper}>
-          <button
-            className={`${styles.navBtn} ${styles.left}`}
-            onClick={() => scroll("left")}
-            disabled={atStart}
-            aria-label="Anterior"
-          >
-            ‹
-          </button>
+      {/* —— BARRA MÓVIL INFERIOR —— */}
+      <div className={styles.mobileMenuBarWrapper}>
+        <button
+          className={`${styles.navBtn} ${styles.left}`}
+          onClick={() => scroll("left")}
+          disabled={atStart}
+          aria-label="Anterior"
+        >
+          ‹
+        </button>
 
-          <div ref={scrollRef} className={styles.scrollContainer}>
-            {elements.map((e, i) =>
-              e.type === "sep" ? (
-                <div key={i} className={styles.separator}>
-                  <div className={styles.line} />
-                  <div className={styles.line} />
-                </div>
-              ) : (
-                <Link key={i} href={e.href} className={styles.menuItem}>
-                  <e.Icon size={20} />
-                  <span>{e.label}</span>
-                </Link>
-              )
-            )}
-          </div>
-
-          <button
-            className={`${styles.navBtn} ${styles.right}`}
-            onClick={() => scroll("right")}
-            disabled={atEnd}
-            aria-label="Siguiente"
-          >
-            ›
-          </button>
+        <div ref={scrollRef} className={styles.mobileScrollContainer}>
+          {elements.map((e, i) =>
+            e.type === "sep" ? (
+              <div key={i} className={styles.separatorMobile} />
+            ) : (
+              <Link key={i} href={e.href} className={styles.menuItemMobile}>
+                <e.Icon size={20} />
+                <span>{e.label}</span>
+              </Link>
+            )
+          )}
         </div>
+
+        <button
+          className={`${styles.navBtn} ${styles.right}`}
+          onClick={() => scroll("right")}
+          disabled={atEnd}
+          aria-label="Siguiente"
+        >
+          ›
+        </button>
       </div>
     </>
   );

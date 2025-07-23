@@ -15,20 +15,11 @@ export default function AdminLayout({
       {/* Navbar fijo arriba */}
       <NavbarAdmin />
 
-      <div className={styles.adminContent}>
-        {/* Sidebar lateral: sólo en desktop */}
-        <aside className={styles.desktopSidebar}>
-          <SidebarAdmin />
-        </aside>
+      {/* Sidebar (desktop) y Barra móvil (mobile) */}
+      <SidebarAdmin />
 
-        {/* Contenido principal justo bajo el navbar y a la derecha del sidebar */}
-        <main className={styles.mainArea}>{children}</main>
-      </div>
-
-      {/* == Barra inferior sólo en mobile == */}
-      <div className={styles.mobileSidebar}>
-        <SidebarAdmin />
-      </div>
+      {/* Contenido principal */}
+      <main className={styles.mainArea}>{children}</main>
     </div>
   );
 }
