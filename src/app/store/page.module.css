@@ -6,7 +6,7 @@
   flex-direction: column;
   gap: 1.75rem;
   padding: 1rem;
-  background: var(--background);     /* definido globalmente */
+  background: #000;         /* fondo negro */
   color: var(--foreground);
 }
 
