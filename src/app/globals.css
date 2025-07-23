@@ -10,6 +10,7 @@
   }
 }
 
+/* Layout base */
 html,
 body {
   max-width: 100vw;
@@ -30,13 +31,30 @@ body {
   margin: 0;
 }
 
+/* Enlaces */
 a {
   color: inherit;
   text-decoration: none;
 }
 
+/* Soporte dark mode */
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
   }
+}
+
+/* ────────────────────────────────────────────────────────────── */
+/* Quitar outline azul / tap-highlight en todo el proyecto       */
+/* ────────────────────────────────────────────────────────────── */
+
+/* 1) Transparente al tap en móviles WebKit */
+*, button, a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 2) Eliminar outline al hacer focus/click */
+*:focus,
+*:focus-visible {
+  outline: none;
 }

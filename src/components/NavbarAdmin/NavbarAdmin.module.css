@@ -1,0 +1,54 @@
+:root {
+  --nav-bg:     #2a2e42;
+  --nav-height: 60px;
+  --text-color: #e3e6f0;
+  --accent:     #1abc9c;
+}
+
+/* Contenedor del navbar */
+.navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: var(--nav-height);
+  background: var(--nav-bg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+/* Logo + texto */
+.logo {
+  display: flex;
+  align-items: center;
+}
+.icon {
+  font-size: 1.5rem;
+  margin-right: 0.5rem;
+}
+.title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+/* Botón de perfil */
+.profileBtn {
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.profileBtn:hover {
+  background: var(--accent);
+  color: #fff;
+}

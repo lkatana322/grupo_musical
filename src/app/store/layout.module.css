@@ -1,0 +1,12 @@
+.storeWrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #111; /* mismo tono que tu navbar */
+  color: #eee;
+}
+
+.storeMain {
+  flex: 1;
+  padding: 1rem;
+}

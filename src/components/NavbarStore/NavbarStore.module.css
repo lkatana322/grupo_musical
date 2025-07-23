@@ -1,0 +1,244 @@
+:root {
+  --bg-dark: #111;
+  --bg-light: #1a1a1a;
+  --bg-sidebar: #181818;
+  --accent: #1db954;
+  --text: #eee;
+  --nav-height: 80px;
+  --carousel-height: 60px;
+  --item-gap: 2.5rem;
+}
+
+/* ====================
+   Navbar Principal
+   ==================== */
+.navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: var(--nav-height);
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--bg-dark);
+  color: var(--text);
+  font-family: 'Segoe UI', sans-serif;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.8);
+  z-index: 1100;
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+}
+.logoIcon {
+  font-size: 2rem;
+  margin-right: 0.6rem;
+}
+.logoText {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+/* Links Desktop */
+.navLinks {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+.navLink {
+  position: relative;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding: 0.25rem 0;
+  transition: color 0.2s;
+}
+.navLink svg {
+  margin-right: 0.4rem;
+}
+.navLink::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0;
+  width: 0; height: 2px;
+  background: var(--accent);
+  transition: width 0.3s;
+}
+.navLink:hover {
+  color: var(--accent);
+}
+.navLink:hover::after {
+  width: 100%;
+}
+
+/* Hamburguesa (mobile) */
+.hamburger {
+  display: none;
+  cursor: pointer;
+  z-index: 1200;
+}
+.hamburger :global(svg) {
+  color: var(--text);
+}
+
+/* Carrusel */
+.carouselContainer {
+  margin-top: var(--nav-height);
+  background: linear-gradient(90deg, #111111, #1a1a1a, #111111);
+  height: var(--carousel-height);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.6);
+  z-index: 1050;
+}
+.carouselItem {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: var(--item-gap);
+}
+.carouselItem svg {
+  color: var(--accent);
+  filter: drop-shadow(0 0 4px var(--accent));
+}
+.carouselLabel {
+  margin-top: 0.3rem;
+  font-size: 0.8rem;
+  color: var(--text);
+}
+
+/* Social Sidebar (desktop) */
+.socialSidebar {
+  position: fixed;
+  left: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  z-index: 900;
+  transition: top 0.3s ease;
+  top: calc(var(--nav-height) + var(--carousel-height) + 1rem);
+}
+.socialSidebar.scrolled {
+  top: calc(var(--nav-height) + 0.5rem);
+}
+.socialSidebar a {
+  color: var(--text);
+  font-size: 1.6rem;
+  padding: 0.25rem;
+  transition: color 0.2s, transform 0.2s;
+}
+.socialSidebar a:hover {
+  color: var(--accent);
+  transform: scale(1.1);
+}
+
+/* Sidebar móvil */
+.sidebar {
+  position: fixed;
+  top: 0; left: 0;
+  width: 230px;          /* reducido de 300px a 260px */
+  height: 100%;
+  background: var(--bg-sidebar);
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 1.5rem;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  box-shadow: 2px 0 6px rgba(0,0,0,0.8);
+  z-index: 1150;
+}
+.sidebar.open {
+  transform: translateX(0);
+}
+
+/* Enlaces Mobile */
+.menuLink {
+  display: flex;
+  align-items: center;
+  font-size: 1.25rem;
+  padding: 1rem 0;
+  text-decoration: none;
+  color: var(--text);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  transition: color 0.2s;
+}
+.menuLink svg {
+  margin-right: 0.6rem;
+}
+.menuLink:hover {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* Separador */
+.divider {
+  width: 100%; height: 1px;
+  background: rgba(255,255,255,0.2);
+  margin: 1.5rem 0;
+}
+
+/* Social Mobile Menu */
+.socialMobileMenu {
+  display: flex; gap: 1rem; justify-content: center;
+}
+.socialMobileMenu a {
+  color: var(--text);
+  font-size: 1.5rem;
+}
+.socialMobileMenu a:hover {
+  color: var(--accent);
+}
+
+/* QR botón móvil */
+.qrBtn {
+  background: var(--accent);
+  color: #000;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 4px;
+  display: flex; align-items: center; gap: 0.5rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 2rem;
+}
+.qrBtn:hover {
+  background: var(--text);
+  color: var(--accent);
+}
+
+/* Floating Actions */
+.floatingActions {
+  position: fixed;
+  bottom: 1.5rem; right: 1.5rem;
+  display: flex; flex-direction: column; gap: 0.75rem;
+  z-index: 900;
+}
+.floatingBtn {
+  width: 3rem; height: 3rem;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--bg-dark);
+  color: var(--text);
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.floatingBtn:hover {
+  transform: scale(1.1);
+}
+.whatsappBtn {
+  background: #25d366;
+  color: #fff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .navLinks { display: none; }
+  .hamburger { display: block; }
+  .socialSidebar { display: none; }
+}

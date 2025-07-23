@@ -1,0 +1,88 @@
+:root {
+  --nav-height:    60px;     /* altura del navbar */
+  --sidebar-width: 240px;
+  --bg-page:       #1f2330;
+  --bg-sidebar:    #20232f;
+  --text-light:    #e3e6f0;
+
+  /* Mobile bottom bar colors */
+  --blur-bg:       rgba(18,18,28,0.75);
+}
+
+/* —— CONTENEDOR GLOBAL —— */
+.adminWrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--bg-page);
+  color: var(--text-light);
+}
+
+/* —— NAVBAR —— */
+.adminWrapper > nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: var(--nav-height);
+  z-index: 1000;
+}
+
+/* —— CONTENIDO BAJO NAVBAR —— */
+.adminContent {
+  display: flex;
+  margin-top: var(--nav-height);
+  flex: 1;
+  overflow: hidden;
+}
+
+/* —— SIDEBAR DESKTOP —— */
+.desktopSidebar {
+  display: none;
+}
+@media (min-width: 769px) {
+  .desktopSidebar {
+    display: block;
+    position: fixed;
+    top: var(--nav-height);
+    left: 0;
+    bottom: 0;
+    width: var(--sidebar-width);
+    background: var(--bg-sidebar);
+    border-right: 1px solid rgba(255,255,255,0.1);
+    overflow-y: auto;
+    z-index: 900;
+  }
+}
+
+/* —— ÁREA PRINCIPAL —— */
+.mainArea {
+  flex: 1;
+  margin-left: 0;
+  padding: 1.5rem;
+  overflow-y: auto;
+  background: var(--bg-page);
+}
+/* empuja a la derecha en desktop */
+@media (min-width: 769px) {
+  .mainArea {
+    margin-left: var(--sidebar-width);
+  }
+}
+
+/* —— BARRA INFERIOR MÓVIL —— */
+.mobileSidebar {
+  display: none;
+}
+@media (max-width: 768px) {
+  .mobileSidebar {
+    display: block;
+    position: fixed;
+    bottom: 0; left: 0;
+    width: 100%;
+    z-index: 1000;
+  }
+  /* deja espacio al final del main para que no lo tape */
+  .mainArea {
+    padding-bottom: 100px;
+  }
+}

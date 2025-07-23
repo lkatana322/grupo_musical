@@ -1,0 +1,51 @@
+:root {
+  --bg-page:    #1f2330;
+  --text-light: #e3e6f0;
+  --accent:     #1abc9c;
+}
+
+.container {
+  padding: 2rem;
+  background: var(--bg-page);
+  min-height: 100%;
+  color: var(--text-light);
+}
+
+.heading {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.description {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+  color: #c1c5d0;
+}
+
+.featuresList {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 2rem;
+}
+.featuresList li {
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+}
+.featuresList strong {
+  color: var(--accent);
+}
+
+.ctaBtn {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1.25rem;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.ctaBtn:hover {
+  background: #17a187;
+}

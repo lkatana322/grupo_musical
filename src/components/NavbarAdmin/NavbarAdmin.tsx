@@ -1,11 +1,19 @@
-import Link from 'next/link';
+"use client";
+
+import React from "react";
+import { User } from "lucide-react";
+import styles from "./NavbarAdmin.module.css";
 
 export default function NavbarAdmin() {
   return (
-    <header style={{ padding: 16, background: '#004', color: '#fff' }}>
-      <Link href="/admin" style={{ marginRight: 12 }}>Dashboard</Link>
-      <Link href="/admin/usuarios" style={{ marginRight: 12 }}>Usuarios</Link>
-      <Link href="/admin/config">Configuración</Link>
-    </header>
+    <nav className={styles.navbar}>
+      <div className={styles.logo}>
+        <span className={styles.icon}>🎵</span>
+        <span className={styles.title}>LOGO GRUPO</span>
+      </div>
+      <button className={styles.profileBtn} aria-label="Perfil">
+        <User size={20} />
+      </button>
+    </nav>
   );
 }

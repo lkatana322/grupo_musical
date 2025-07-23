@@ -1,25 +1,123 @@
-import Link from 'next/link';
+"use client";
+
+import { useRef, useState, useEffect } from "react";
+import Link from "next/link";
+import styles from "./SidebarAdmin.module.css";
+import {
+  Home,         // ícono para dashboard
+  Mic,          // Tocadas
+  User,         // Integrantes / Usuarios
+  Guitar,       // Instrumentos / Tienda
+  CalendarPlus, // Gestión Eventos
+  DollarSign,   // Ingresos
+  BookOpen,     // Cursos
+  List,         // Inscripciones
+  Globe         // Administrar Web
+} from "lucide-react";
+
+const elements: Array<
+  | { type: "sep" }
+  | { type: "item"; href: string; label: string; Icon: React.FC<any> }
+> = [
+  { type: "item", href: "/admin", label: "Dashboard", Icon: Home },
+  { type: "sep" },
+
+  { type: "item", href: "/admin/tocadas", label: "Tocadas", Icon: Mic },
+  { type: "sep" },
+
+  { type: "item", href: "/admin/integrantes", label: "Integrantes", Icon: User },
+  { type: "item", href: "/admin/instrumentos", label: "Instrumentos", Icon: Guitar },
+  { type: "sep" },
+
+  { type: "item", href: "/admin/eventos", label: "Gestión Eventos", Icon: CalendarPlus },
+  { type: "item", href: "/admin/ingresos", label: "Ingresos", Icon: DollarSign },
+  { type: "item", href: "/admin/tienda", label: "Tienda", Icon: Guitar },
+  { type: "item", href: "/admin/usuarios", label: "Usuarios", Icon: User },
+  { type: "sep" },
+
+  { type: "item", href: "/admin/cursos", label: "Cursos", Icon: BookOpen },
+  { type: "item", href: "/admin/inscripciones", label: "Inscripciones", Icon: List },
+  { type: "sep" },
+
+  { type: "item", href: "/admin/website", label: "Administrar Página Web", Icon: Globe },
+  { type: "sep" },
+];
 
 export default function SidebarAdmin() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [atStart, setAtStart] = useState(true);
+  const [atEnd, setAtEnd] = useState(false);
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const onScroll = () => {
+      setAtStart(el.scrollLeft <= 0);
+      setAtEnd(el.scrollLeft + el.clientWidth >= el.scrollWidth - 1);
+    };
+    el.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => el.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const scroll = (dir: "left" | "right") => {
+    const el = scrollRef.current!;
+    el.scrollBy({ left: (dir === "left" ? -1 : 1) * el.clientWidth * 0.8, behavior: "smooth" });
+  };
+
   return (
-    <aside style={{ width: 200, padding: 16, background: '#eef', height: '100vh' }}>
-      <ul style={{ listStyle: 'none', padding: 0 }}>
-        <li>
-          <Link href="/admin" style={{ display: 'block', padding: '8px 0' }}>
-            Dashboard
-          </Link>
-        </li>
-        <li>
-          <Link href="/admin/usuarios" style={{ display: 'block', padding: '8px 0' }}>
-            Usuarios
-          </Link>
-        </li>
-        <li>
-          <Link href="/admin/config" style={{ display: 'block', padding: '8px 0' }}>
-            Configuración
-          </Link>
-        </li>
-      </ul>
-    </aside>
+    <>
+      {/* SIDEBAR DESKTOP */}
+      <aside className={styles.desktopSidebar}>
+        {elements.map((e, i) =>
+          e.type === "sep" ? (
+            <div key={i} className={styles.separatorDesktop} />
+          ) : (
+            <Link key={i} href={e.href} className={styles.menuItemDesktop}>
+              <e.Icon /> <span>{e.label}</span>
+            </Link>
+          )
+        )}
+      </aside>
+
+      {/* BARRA MÓVIL INFERIOR */}
+      <div className={styles.mobileMenuBar}>
+        <div className={styles.scrollWrapper}>
+          <button
+            className={`${styles.navBtn} ${styles.left}`}
+            onClick={() => scroll("left")}
+            disabled={atStart}
+            aria-label="Anterior"
+          >
+            ‹
+          </button>
+
+          <div ref={scrollRef} className={styles.scrollContainer}>
+            {elements.map((e, i) =>
+              e.type === "sep" ? (
+                <div key={i} className={styles.separator}>
+                  <div className={styles.line} />
+                  <div className={styles.line} />
+                </div>
+              ) : (
+                <Link key={i} href={e.href} className={styles.menuItem}>
+                  <e.Icon />
+                  {e.label}
+                </Link>
+              )
+            )}
+          </div>
+
+          <button
+            className={`${styles.navBtn} ${styles.right}`}
+            onClick={() => scroll("right")}
+            disabled={atEnd}
+            aria-label="Siguiente"
+          >
+            ›
+          </button>
+        </div>
+      </div>
+    </>
   );
 }

@@ -1,12 +1,14 @@
-import NavbarStore from '@/components/NavbarStore/NavbarStore';
-import Footer from '@/components/Footer/Footer';
+import React from "react";
+import NavbarStore from "@/components/NavbarStore/NavbarStore";
+import styles from "./layout.module.css";
 
-export default function StoreLayout({ children }: { children: React.ReactNode }) {
+export default function StoreLayout({ children }: {
+  children: React.ReactNode
+}) {
   return (
-    <>
+    <div className={styles.storeWrapper}>
       <NavbarStore />
-      <main style={{ padding: 24 }}>{children}</main>
-      <Footer />
-    </>
+      <main className={styles.storeMain}>{children}</main>
+    </div>
   );
 }
