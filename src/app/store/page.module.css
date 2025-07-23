@@ -1,3 +1,5 @@
+/* src/app/store/page.module.css */
+
 /*************************
   Layout general
 *************************/
@@ -6,7 +8,7 @@
   flex-direction: column;
   gap: 1.75rem;
   padding: 1rem;
-  background: #000;         /* fondo negro */
+  background: #000;
   color: var(--foreground);
 }
 
@@ -33,8 +35,12 @@
 }
 
 @keyframes shimmer {
-  0%   { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
 }
 
 /* capas de imagen */
@@ -43,8 +49,12 @@
   position: absolute;
   inset: 0;
 }
-.bannerBlur  { z-index: 1; }
-.bannerMain  { z-index: 3; }
+.bannerBlur {
+  z-index: 1;
+}
+.bannerMain {
+  z-index: 3;
+}
 
 /* transición de opacidad */
 .bannerBlur :global(img),
@@ -54,7 +64,9 @@
   opacity: 0;
   transition: opacity 0.9s ease;
 }
-.loaded { opacity: 1 !important; }
+.loaded {
+  opacity: 1 !important;
+}
 
 /* degradados extra */
 .gradientTop,
@@ -65,10 +77,16 @@
   height: 28%;
   z-index: 4;
 }
-.gradientTop    { top: 0;    background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent); }
-.gradientBottom { bottom: 0; background: linear-gradient(to top,    rgba(0,0,0,0.8), transparent); }
+.gradientTop {
+  top: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent);
+}
+.gradientBottom {
+  bottom: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+}
 
-/* título centrado */
+/* título centrado por defecto */
 .bannerTitle {
   position: absolute;
   top: 50%;
@@ -78,8 +96,9 @@
   padding: 0 1rem;
   font-size: 3rem;
   color: #fff;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
   z-index: 5;
+  text-align: center;
 }
 
 /*************************
@@ -90,14 +109,21 @@
   max-width: 55ch;
   line-height: 1.6;
   text-align: center;
+  color: #fff;
 }
 
 /*************************
   Tarjetas principales
 *************************/
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(24px); }
-  to   { opacity: 1; transform: translateY(0);   }
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .cards {
@@ -107,7 +133,7 @@
 }
 
 .card {
-  background: var(--card-bg);
+  background: #000; 
   border-radius: 8px;
   padding: 1.2rem;
   text-align: left;
@@ -118,11 +144,20 @@
 }
 .card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
 }
-.card svg { color: var(--accent); }
-.card h2  { margin: 0.5rem 0 0.3rem; font-size: 1.1rem; }
-.card p   { margin: 0; font-size: 0.9rem; line-height: 1.4; }
+.card svg {
+  color: var(--accent);
+}
+.card h2 {
+  margin: 0.5rem 0 0.3rem;
+  font-size: 1.1rem;
+}
+.card p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
 
 /*************************
   Secciones (valores / testimonios)
@@ -134,15 +169,15 @@
   color: var(--accent);
 }
 
-/* wrapper que se hace visible al scrollear */
 .valuesSection,
 .testimonialsSection {
   opacity: 0;
   transition: opacity 0.55s ease;
 }
-.visible { opacity: 1; }
+.visible {
+  opacity: 1;
+}
 
-/* valores */
 .values {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -155,10 +190,16 @@
   animation: fadeUp 0.6s forwards;
   opacity: 0;
 }
-.valueCard h3   { margin: 0 0 0.4rem; font-size: 1.2rem; color: var(--accent); }
-.valueCard p    { margin: 0; font-size: 0.9rem; }
+.valueCard h3 {
+  margin: 0 0 0.4rem;
+  font-size: 1.2rem;
+  color: var(--accent);
+}
+.valueCard p {
+  margin: 0;
+  font-size: 0.9rem;
+}
 
-/* testimonios */
 .testimonials {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -171,20 +212,57 @@
   animation: fadeUp 0.6s forwards;
   opacity: 0;
 }
-.testimonialText   { font-style: italic; margin: 0 0 0.75rem; }
-.testimonialAuthor { text-align: right; font-size: 0.9rem; }
+.testimonialText {
+  font-style: italic;
+  margin: 0 0 0.75rem;
+}
+.testimonialAuthor {
+  text-align: right;
+  font-size: 0.9rem;
+}
 
 /*************************
-  Responsivo
+  Adaptaciones para pantallas pequeñas
 *************************/
 @media (max-width: 768px) {
-  .bannerTitle       { font-size: 2.4rem; }
-  .sectionTitle      { font-size: 1.6rem; }
+  .bannerTitle {
+    font-size: 2.4rem;
+  }
+  .sectionTitle {
+    font-size: 1.6rem;
+  }
 }
 
 @media (max-width: 600px) {
-  .banner            { height: 52vh; max-height: none; }
-  .cards             { grid-template-columns: repeat(2, 1fr); }
-  .values            { grid-template-columns: 1fr; }
-  .testimonials      { grid-template-columns: 1fr; }
+  /* Limitar altura del banner */
+  .banner {
+    max-height: 40vh;
+  }
+  /* Mover y achicar el título */
+  .bannerTitle {
+    top: auto;
+    left: auto;
+    bottom: 1rem;
+    right: 1rem;
+    transform: none;
+    font-size: 1.8rem;
+    text-align: right;
+    padding: 0.2rem 0.5rem;
+  }
+  /* Neon glow al texto introductorio */
+  .introText {
+    font-weight: 700;
+    text-shadow:
+      0 0 4px var(--accent),
+      0 0 8px var(--accent),
+      0 0 12px var(--accent);
+  }
+  /* Ajustes de rejilla */
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .values,
+  .testimonials {
+    grid-template-columns: 1fr;
+  }
 }

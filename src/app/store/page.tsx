@@ -1,3 +1,4 @@
+// src/app/store/page.tsx
 "use client";
 
 import { useState, useRef, useEffect } from "react";
@@ -12,7 +13,7 @@ export default function StoreHome() {
   const [testsVisible, setTestsVisible] = useState(false);
 
   const valuesRef = useRef<HTMLElement>(null);
-  const testsRef  = useRef<HTMLElement>(null);
+  const testsRef = useRef<HTMLElement>(null);
 
   /* ───────── Intersection observers ───────── */
   useEffect(() => {
@@ -21,14 +22,14 @@ export default function StoreHome() {
         entries.forEach(e => {
           if (!e.isIntersecting) return;
           if (e.target === valuesRef.current) setValuesVisible(true);
-          if (e.target === testsRef.current)  setTestsVisible(true);
+          if (e.target === testsRef.current) setTestsVisible(true);
         });
       },
       { threshold: 0.25 }
     );
 
     if (valuesRef.current) obs.observe(valuesRef.current);
-    if (testsRef.current)  obs.observe(testsRef.current);
+    if (testsRef.current) obs.observe(testsRef.current);
 
     return () => obs.disconnect();
   }, []);
@@ -93,13 +94,11 @@ export default function StoreHome() {
     },
   ];
 
-  /* ───────── JSX ───────── */
   return (
     <div className={styles.container}>
       {/* ── Banner ── */}
       <div className={styles.banner}>
         {!bannerLoaded && <div className={styles.bannerPlaceholder} />}
-        {/* capa difuminada */}
         <div className={styles.bannerBlur}>
           <Image
             src="/imagenes/baner.png"
@@ -111,7 +110,6 @@ export default function StoreHome() {
             onLoadingComplete={handleImageLoad}
           />
         </div>
-        {/* imagen principal */}
         <div className={styles.bannerMain}>
           <Image
             src="/imagenes/baner.png"
@@ -123,7 +121,6 @@ export default function StoreHome() {
             onLoadingComplete={handleImageLoad}
           />
         </div>
-        {/* degradados */}
         <div className={styles.gradientTop} />
         <div className={styles.gradientBottom} />
 
@@ -139,7 +136,11 @@ export default function StoreHome() {
       {/* ── Cards ── */}
       <div className={styles.cards}>
         {cards.map(({ Icon, label, description }, i) => (
-          <div key={i} className={styles.card} style={{ animationDelay: `${0.1 * i}s` }}>
+          <div
+            key={i}
+            className={styles.card}
+            style={{ animationDelay: `${0.1 * i}s` }}
+          >
             <Icon size={34} />
             <h2>{label}</h2>
             <p>{description}</p>
