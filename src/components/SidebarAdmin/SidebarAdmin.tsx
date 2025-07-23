@@ -1,24 +1,26 @@
+// src/components/SidebarAdmin/SidebarAdmin.tsx
 "use client";
 
 import { useRef, useState, useEffect } from "react";
 import Link from "next/link";
-import styles from "./SidebarAdmin.module.css";
 import {
-  Home,         // ícono para dashboard
-  Mic,          // Tocadas
-  User,         // Integrantes / Usuarios
-  Guitar,       // Instrumentos / Tienda
-  CalendarPlus, // Gestión Eventos
-  DollarSign,   // Ingresos
-  BookOpen,     // Cursos
-  List,         // Inscripciones
-  Globe         // Administrar Web
+  Home,
+  Mic,
+  User,
+  Guitar,
+  CalendarPlus,
+  DollarSign,
+  BookOpen,
+  List,
+  Globe,
 } from "lucide-react";
+import styles from "./SidebarAdmin.module.css";
 
-const elements: Array<
+type Element =
   | { type: "sep" }
-  | { type: "item"; href: string; label: string; Icon: React.FC<any> }
-> = [
+  | { type: "item"; href: string; label: string; Icon: React.ComponentType<{ size?: number }> };
+
+const elements: Element[] = [
   { type: "item", href: "/admin", label: "Dashboard", Icon: Home },
   { type: "sep" },
 
@@ -39,7 +41,7 @@ const elements: Array<
   { type: "item", href: "/admin/inscripciones", label: "Inscripciones", Icon: List },
   { type: "sep" },
 
-  { type: "item", href: "/admin/website", label: "Administrar Página Web", Icon: Globe },
+  { type: "item", href: "/admin/website", label: "Administrar Web", Icon: Globe },
   { type: "sep" },
 ];
 
@@ -62,7 +64,10 @@ export default function SidebarAdmin() {
 
   const scroll = (dir: "left" | "right") => {
     const el = scrollRef.current!;
-    el.scrollBy({ left: (dir === "left" ? -1 : 1) * el.clientWidth * 0.8, behavior: "smooth" });
+    el.scrollBy({
+      left: (dir === "left" ? -1 : 1) * el.clientWidth * 0.8,
+      behavior: "smooth",
+    });
   };
 
   return (
@@ -74,7 +79,8 @@ export default function SidebarAdmin() {
             <div key={i} className={styles.separatorDesktop} />
           ) : (
             <Link key={i} href={e.href} className={styles.menuItemDesktop}>
-              <e.Icon /> <span>{e.label}</span>
+              <e.Icon size={18} />
+              <span>{e.label}</span>
             </Link>
           )
         )}
@@ -101,8 +107,8 @@ export default function SidebarAdmin() {
                 </div>
               ) : (
                 <Link key={i} href={e.href} className={styles.menuItem}>
-                  <e.Icon />
-                  {e.label}
+                  <e.Icon size={20} />
+                  <span>{e.label}</span>
                 </Link>
               )
             )}

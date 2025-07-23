@@ -1,9 +1,4 @@
-:root {
-  --nav-bg:     #2a2e42;
-  --nav-height: 60px;
-  --text-color: #e3e6f0;
-  --accent:     #1abc9c;
-}
+
 
 /* Contenedor del navbar */
 .navbar {

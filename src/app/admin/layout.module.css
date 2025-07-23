@@ -1,13 +1,3 @@
-:root {
-  --nav-height:    60px;     /* altura del navbar */
-  --sidebar-width: 240px;
-  --bg-page:       #1f2330;
-  --bg-sidebar:    #20232f;
-  --text-light:    #e3e6f0;
-
-  /* Mobile bottom bar colors */
-  --blur-bg:       rgba(18,18,28,0.75);
-}
 
 /* —— CONTENEDOR GLOBAL —— */
 .adminWrapper {

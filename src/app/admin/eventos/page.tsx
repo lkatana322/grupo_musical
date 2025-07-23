@@ -1,13 +1,11 @@
-"use client";
+// src/app/admin/eventos/page.tsx
+export const metadata = { title: "Gestión de Eventos" };
 
 export default function EventosPage() {
   return (
-    <section style={{ padding: 24 }}>
+    <main style={{ padding: 16 }}>
       <h1>Gestión de Eventos</h1>
-      <p>
-        Planifica y organiza eventos especiales:
-        defínelos, asigna ubicaciones y gestiona el aforo.
-      </p>
-    </section>
+      <p>Lista, crea y edita los eventos programados.</p>
+    </main>
   );
 }

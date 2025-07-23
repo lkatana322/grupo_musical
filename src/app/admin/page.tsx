@@ -12,7 +12,7 @@ type Tocada = {
   recinto: string;
 };
 
-const próximasTocadas: Tocada[] = [
+const proximasTocadas: Tocada[] = [
   { id: "1", fecha: "2025‑08‑10", evento: "Concierto de Verano",   ciudad: "Ciudad A", recinto: "Sala Principal" },
   { id: "2", fecha: "2025‑08‑15", evento: "Recital Nocturno",      ciudad: "Ciudad B", recinto: "Teatro Central" },
   { id: "3", fecha: "2025‑08‑22", evento: "Gala Musical",          ciudad: "Ciudad C", recinto: "Foro Cultural" },
@@ -23,10 +23,12 @@ const próximasTocadas: Tocada[] = [
 export default function AdminHome() {
   return (
     <div className={styles.container}>
-      <h1 className={styles.heading}>Próximas Tocadas: "Este contenido mostrara lo que es prioritario segun sus requerimientos"</h1>
+      <h1 className={styles.heading}>
+        Próximas Tocadas: “Este contenido mostrará lo que es prioritario según sus requerimientos”
+      </h1>
 
       <div className={styles.grid}>
-        {próximasTocadas.map(({ id, fecha, evento, ciudad, recinto }) => (
+        {proximasTocadas.map(({ id, fecha, evento, ciudad, recinto }) => (
           <div key={id} className={styles.card}>
             {/* Header con fecha */}
             <div className={styles.cardHeader}>

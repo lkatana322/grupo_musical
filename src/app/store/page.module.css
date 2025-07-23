@@ -1,10 +1,4 @@
-:root {
-  --background: #0a0a0a;
-  --foreground: #ededed;
-  --accent: #1abc9c;
-  --card-bg: rgba(255,255,255,0.05);
-  --card-bg-hover: rgba(255,255,255,0.1);
-}
+
 
 /* Container */
 .container {
